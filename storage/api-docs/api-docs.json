@@ -1,0 +1,102 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Crud de Usuarios",
+        "description": "Documentación para la utilización de un API Crud de usuarios",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/people": {
+            "get": {
+                "tags": [
+                    "Catálogo de Personas"
+                ],
+                "summary": "Listado de personas",
+                "description": "Obtiene todos las personas registradas de forma paginada.",
+                "operationId": "b2985cc1b5ff63acae04676e8de27da8",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los personas registradas."
+                    },
+                    "400": {
+                        "description": "Ha ocurrido un error."
+                    },
+                    "500": {
+                        "description": "Error en el servidor"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Catálogo de Personas"
+                ],
+                "summary": "Crear nueva persona",
+                "description": "Crea un nuevo registro en el catálogo de personas",
+                "operationId": "209c4a23e6aa244623d8a2a3a548f25b",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "full_name": {
+                                        "type": "string"
+                                    },
+                                    "birthdate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registro exitoso en la base de datos"
+                    }
+                }
+            }
+        },
+        "/api/people/{person}": {
+            "get": {
+                "tags": [
+                    "Catálogo de Personas"
+                ],
+                "summary": "Mostrar información de una persona",
+                "operationId": "ba1ce43d77491117729cfec8af32b3ff",
+                "parameters": [
+                    {
+                        "name": "person",
+                        "in": "path",
+                        "description": "Parámetro necesario para consultar los datos de una persona",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "int": {
+                                "summary": "Introduce un ID de un usuario.",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra la información del usuario."
+                    },
+                    "404": {
+                        "description": "No se ha encontró el usuario."
+                    }
+                }
+            }
+        }
+    }
+}

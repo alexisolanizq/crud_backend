@@ -1,0 +1,219 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Crud de Usuarios",
+        "description": "Documentación para la utilización de un API Crud de usuarios",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/people": {
+            "get": {
+                "tags": [
+                    "Catálogo de Personas"
+                ],
+                "summary": "Listar todos los registros",
+                "description": "Obtiene todos las personas registradas de forma paginada.",
+                "operationId": "b2985cc1b5ff63acae04676e8de27da8",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los personas registradas."
+                    },
+                    "400": {
+                        "description": "Ha ocurrido un error."
+                    },
+                    "500": {
+                        "description": "Error en el servidor"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Catálogo de Personas"
+                ],
+                "summary": "Crear un nuevo registro",
+                "description": "Crea un nuevo registro en el catálogo de personas",
+                "operationId": "209c4a23e6aa244623d8a2a3a548f25b",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "full_name": {
+                                        "type": "string"
+                                    },
+                                    "birthdate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "number"
+                                    },
+                                    "job_title": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    },
+                                    "age": {
+                                        "type": "number"
+                                    },
+                                    "company": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registro exitoso en la base de datos"
+                    },
+                    "422": {
+                        "description": "No se ha podido procesar el registro"
+                    }
+                }
+            }
+        },
+        "/api/people/{person}": {
+            "get": {
+                "tags": [
+                    "Catálogo de Personas"
+                ],
+                "summary": "Mostrar información de un registro",
+                "operationId": "ba1ce43d77491117729cfec8af32b3ff",
+                "parameters": [
+                    {
+                        "name": "person",
+                        "in": "path",
+                        "description": "Parámetro necesario para consultar los datos de una persona",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "examples": {
+                            "int": {
+                                "summary": "Introduce un ID de un usuario.",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Muestra la información del usuario."
+                    },
+                    "404": {
+                        "description": "No se ha encontró el usuario."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Catálogo de Personas"
+                ],
+                "summary": "Eliminar un registro",
+                "operationId": "6c64d6df544795018191dc9c4788faa5",
+                "parameters": [
+                    {
+                        "name": "person",
+                        "in": "path",
+                        "description": "Parámetro necesario para actualizar los datos de un persona",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "examples": {
+                            "int": {
+                                "summary": "Introduce un ID de usuario.",
+                                "value": 1
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "El usuario se elimino correctamente"
+                    }
+                }
+            }
+        },
+        "api/people/{person}": {
+            "patch": {
+                "tags": [
+                    "Catálogo de Personas"
+                ],
+                "summary": "Actualizar un registro",
+                "operationId": "37e607a600c1d430977cc49937418216",
+                "parameters": [
+                    {
+                        "name": "person",
+                        "in": "path",
+                        "description": "Parámetro necesario para actualizar los datos de un persona",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "examples": {
+                            "int": {
+                                "summary": "Introduce un ID de usuario.",
+                                "value": 1
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "full_name": {
+                                        "type": "string"
+                                    },
+                                    "birthdate": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "number"
+                                    },
+                                    "job_title": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    },
+                                    "age": {
+                                        "type": "number"
+                                    },
+                                    "company": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "El usuario se actualizo correctamente"
+                    }
+                }
+            }
+        }
+    }
+}
