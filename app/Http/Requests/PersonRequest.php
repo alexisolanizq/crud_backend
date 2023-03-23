@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PersonRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class PersonRequest extends FormRequest
         return [
             'full_name' => ['required'],
             'birthdate' => ['required', 'date'],
-            'email' => ['required', 'unique:people', 'email'],
+            'email' => ['required', Rule::unique('people')->ignore($this->person), 'email'],
             'phone' => ['required'],
             'job_title' => ['required'],
             'address' => ['required'],
